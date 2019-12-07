@@ -1,13 +1,13 @@
 #include "accelerometer.h"
-
+#include "bmp180.h"
 
 void setup() {
-  // put your setup code here, to run once:
  Serial.begin(9600);
+ bmp_setup();
 
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-accelerometerPrint();
+  accelerometerPrint();
+  bmpPrint();
 }
