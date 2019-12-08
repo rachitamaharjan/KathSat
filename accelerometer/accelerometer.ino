@@ -17,11 +17,11 @@ void setup()
 }
 void loop()
 {
- int x = analogRead(xpin);  //read from xpin
+ int x = analogRead(1);  //read from xpin
  
- int y = analogRead(ypin);  //read from ypin
+ int y = analogRead(2);  //read from ypin
  
- int z = analogRead(zpin);  //read from zpin
+ int z = analogRead(3);  //read from zpin
  
 float zero_G = 512.0; //ADC is 0~1023  the zero g output equal to Vs/2
                       //ADXL335 power supply by Vs 3.3V

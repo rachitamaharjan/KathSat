@@ -1,25 +1,24 @@
 #include <SD.h>
 #include <SPI.h>
+
 #include <DS3231.h>
+
 #include <Wire.h>
 #include <Adafruit_BMP085.h>
 
 Adafruit_BMP085 bmp;
 
- char status;
-  double T,P,p0,a;
 File file;
+
 DS3231  rtc(SDA, SCL);
-int CS_pin = 10; // Pin 10 on Arduino Uno
-//const int sensor_pin = A0;
-//float temp;  
-//float output;
+int CS_pin = 10; 
 
 void setup() {
   Serial.begin(9600);
 //  pinMode(sensor_pin,INPUT);
   pinMode(CS_pin, OUTPUT);
   rtc.begin(); 
+//  rtc.setTime(15,40,0);
   // SD Card Initialization
   if (SD.begin())
   {
@@ -40,7 +39,12 @@ void setup() {
 //  Serial.print("Temp");
 //  Serial.println("\t");
   Serial.println("Altitude");
-
+  Serial.print("\t");
+  Serial.print("AccelerationX");
+  Serial.print("\t");
+  Serial.print("AccelerationY");
+  Serial.print("\t");
+  Serial.print("AccelerationZ");
   file = SD.open("test.txt", FILE_WRITE);
   if (file) { 
     file.print("Call sign  ");   
@@ -54,6 +58,12 @@ void setup() {
 //    file.print("Temp");
 //    file.println("\t");
     file.println("Altitude");
+    file.print("\t");
+    file.print("AccelerationX");
+    file.print("\t");
+    file.print("AccelerationY");
+    file.print("\t");
+    file.print("AccelerationZ\n");
     file.close(); // close the file
   }
   // if the file didn't open, print an error:
@@ -69,7 +79,7 @@ void setup() {
 void loop() {
 //  output = analogRead(sensor_pin);
 //  temp =(output*500)/1023;
-  Serial.print("RoboFOSS");
+  Serial.print("\nRoboFOSS");
   Serial.print("\t");
   Serial.print("\t");
   Serial.print("Descent");
@@ -81,6 +91,30 @@ void loop() {
   Serial.println(bmp.readAltitude());
 
 //  Serial.println(temp);
+  int x = analogRead(1);  //read from xpin
+ 
+   int y = analogRead(2);  //read from ypin
+   
+   int z = analogRead(3);  //read from zpin
+   
+    float zero_G = 512.0; //ADC is 0~1023  the zero g output equal to Vs/2
+                          //ADXL335 power supply by Vs 3.3V
+    float scale = 102.3;  //ADXL335330 Sensitivity is 330mv/g
+                           //330 * 1024/3.3/1000 
+    
+    //Serial.print(x);
+    //Serial.print("\t");
+    //Serial.print(y);
+    //Serial.print("\t");
+    //Serial.print(z); 
+    Serial.print("\t");
+    Serial.print(((float)x - 331.5)/65*9.8);  //print x value on serial monitor
+    Serial.print("\t");
+    Serial.print(((float)y - 329.5)/68.5*9.8);  //print y value on serial monitor
+    Serial.print("\t");
+    Serial.print(((float)z - 340)/68*9.8);  //print z value on serial monitor
+    Serial.print("\n\n");
+    delay(500);
  
   file = SD.open("test.txt", FILE_WRITE);
   if (file) {   
@@ -94,7 +128,15 @@ void loop() {
     file.print(rtc.getTimeStr());
     file.print("\t");
     file.print(bmp.readAltitude());
-    file.print("\n");
+    file.print("\t");
+    file.print(((float)x - 331.5)/65*9.8);  //print x value on serial monitor
+    file.print("\t");
+    file.print(((float)y - 329.5)/68.5*9.8);  //print y value on serial monitor
+    file.print("\t");
+    file.print(((float)z - 340)/68*9.8);  //print z value on serial monitor
+    file.print("\n\n");
+    delay(500);
+//    file.print("\n");
 //    Serial.println("altitude");
 //    file.println(temp);
     file.close(); // close the file
@@ -103,6 +145,8 @@ void loop() {
   else {
     Serial.println("error opening test.txt");
   }
-  delay(1000);
+  delay(500);
+  
+ 
  
 }
