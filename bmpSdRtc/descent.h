@@ -9,6 +9,8 @@
 Adafruit_BMP085 bmp;
 
 File file;
+double alt;
+//double 
 
 DS3231  rtc(SDA, SCL);
 int CS_pin = 10; 
@@ -18,6 +20,7 @@ void descent_setup() {
 //  pinMode(sensor_pin,INPUT);
   pinMode(CS_pin, OUTPUT);
   rtc.begin(); 
+//  alt = bmp.readAltitude();
 //  rtc.setTime(15,40,0);
   // SD Card Initialization
   if (SD.begin())
@@ -88,7 +91,10 @@ void descent_loop() {
   Serial.print(" : ");
   Serial.print(rtc.getTimeStr());
   Serial.print("\t");
-  Serial.println(bmp.readAltitude());
+  alt = bmp.readAltitude(102000); //current sea level pressure in Nepal
+//  alt = bmp.readAltitude();
+
+  Serial.println(alt);
 
 //  Serial.println(temp);
   int x = analogRead(1);  //read from xpin
@@ -127,7 +133,7 @@ void descent_loop() {
     file.print(" : ");   
     file.print(rtc.getTimeStr());
     file.print("\t");
-    file.print(bmp.readAltitude());
+    file.print(alt);
     file.print("\t");
     file.print(((float)x - 331.5)/65*9.8);  //print x value on serial monitor
     file.print("\t");

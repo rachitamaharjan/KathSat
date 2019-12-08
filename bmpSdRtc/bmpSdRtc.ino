@@ -20,7 +20,13 @@ void setup() {
 
 void loop() {
 
- descent_loop();
- lunar_loop();
+ if(alt>=1150){
+   Serial.println("Descent");
+   descent_loop();
+ }
+ if(alt<=1080){
+   Serial.println("Descent");
+    lunar_loop();
+ }
 
 }
