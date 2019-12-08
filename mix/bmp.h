@@ -65,7 +65,7 @@ V10 Mike Grusin, SparkFun Electronics 10/24/2013
 #include <Wire.h>
 
 // You will need to create an SFE_BMP180 object, here called "pressure":
-
+  double T,P,p0,a;
 SFE_BMP180 pressure;
 
 #define ALTITUDE 1655.0 // Altitude of SparkFun's HQ in Boulder, CO. in meters
@@ -91,7 +91,7 @@ void bmp_setup()
 void bmpPrint()
 {
   char status;
-  double T,P,p0,a;
+//  double T,P,p0,a;
 
   // Loop here getting pressure readings every 10 seconds.
 

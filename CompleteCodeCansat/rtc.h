@@ -47,29 +47,29 @@ void timestamp_RTC ()
     Serial.print(now.second(), DEC);
     Serial.println();
     
-    Serial.println("Unix Time: ");
-    Serial.print("elapsed ");
-    Serial.print(now.unixtime());
-    Serial.print(" seconds/");
-    Serial.print(now.unixtime() / 86400L);
-    Serial.println(" days since 1/1/1970");
+//    Serial.println("Unix Time: ");
+//    Serial.print("elapsed ");
+//    Serial.print(now.unixtime());
+//    Serial.print(" seconds/");
+//    Serial.print(now.unixtime() / 86400L);
+//    Serial.println(" days since 1/1/1970");
     
     // calculate a date which is 7 days & 30 seconds into the future
-    DateTime future (now + TimeSpan(7,0,0,30));
-    
-    Serial.println("Future Date & Time (Now + 7days & 30s): ");
-    Serial.print(future.year(), DEC);
-    Serial.print('/');
-    Serial.print(future.month(), DEC);
-    Serial.print('/');
-    Serial.print(future.day(), DEC);
-    Serial.print(' ');
-    Serial.print(future.hour(), DEC);
-    Serial.print(':');
-    Serial.print(future.minute(), DEC);
-    Serial.print(':');
-    Serial.print(future.second(), DEC);
-    Serial.println();
+//    DateTime future (now + TimeSpan(7,0,0,30));
+//    
+//    Serial.println("Future Date & Time (Now + 7days & 30s): ");
+//    Serial.print(future.year(), DEC);
+//    Serial.print('/');
+//    Serial.print(future.month(), DEC);
+//    Serial.print('/');
+//    Serial.print(future.day(), DEC);
+//    Serial.print(' ');
+//    Serial.print(future.hour(), DEC);
+//    Serial.print(':');
+//    Serial.print(future.minute(), DEC);
+//    Serial.print(':');
+//    Serial.print(future.second(), DEC);
+//    Serial.println();
     
     Serial.println();
     delay(1000);
