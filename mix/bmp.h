@@ -103,8 +103,8 @@ void bmpPrint()
   Serial.print("provided altitude: ");
   Serial.print(ALTITUDE,0);
   Serial.print(" meters, ");
-  Serial.print(ALTITUDE*3.28084,0);
-  Serial.println(" feet");
+//  Serial.print(ALTITUDE*3.28084,0);
+//  Serial.println(" feet");
   
   // If you want to measure altitude, and not pressure, you will instead need
   // to provide a known baseline pressure. This is shown at the end of the sketch.
@@ -132,8 +132,8 @@ void bmpPrint()
       Serial.print("temperature: ");
       Serial.print(T,2);
       Serial.print(" deg C, ");
-      Serial.print((9.0/5.0)*T+32.0,2);
-      Serial.println(" deg F");
+//      Serial.print((9.0/5.0)*T+32.0,2);
+//      Serial.println(" deg F");
       
       // Start a pressure measurement:
       // The parameter is the oversampling setting, from 0 to 3 (highest res, longest wait).
@@ -159,8 +159,8 @@ void bmpPrint()
           Serial.print("absolute pressure: ");
           Serial.print(P,2);
           Serial.print(" mb, ");
-          Serial.print(P*0.0295333727,2);
-          Serial.println(" inHg");
+//          Serial.print(P*0.0295333727,2);
+//          Serial.println(" inHg");
 
           // The pressure sensor returns abolute pressure, which varies with altitude.
           // To remove the effects of altitude, use the sealevel function and your current altitude.
@@ -172,8 +172,8 @@ void bmpPrint()
           Serial.print("relative (sea-level) pressure: ");
           Serial.print(p0,2);
           Serial.print(" mb, ");
-          Serial.print(p0*0.0295333727,2);
-          Serial.println(" inHg");
+//          Serial.print(p0*0.0295333727,2);
+//          Serial.println(" inHg");
 
           // On the other hand, if you want to determine your altitude from the pressure reading,
           // use the altitude function along with a baseline pressure (sea-level or other).
@@ -184,8 +184,8 @@ void bmpPrint()
           Serial.print("computed altitude: ");
           Serial.print(a,0);
           Serial.print(" meters, ");
-          Serial.print(a*3.28084,0);
-          Serial.println(" feet");
+//          Serial.print(a*3.28084,0);
+//          Serial.println(" feet");
         }
         else Serial.println("error retrieving pressure measurement\n");
       }

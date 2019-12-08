@@ -1,8 +1,3 @@
-/////////////////////////////////////////////////////////////////
-   //              Arduino SD Card Tutorial     v1.00             //
-  //       Get the latest version of the code here:              //
- //         http://educ8s.tv/arduino-sd-card-tutorial           //
-/////////////////////////////////////////////////////////////////
 #include <SD.h>
 #include <SPI.h>
 
@@ -40,7 +35,7 @@ int createFile(char filename[])
   }
 }
 
-int writeToFile(double temp)
+int writeToFile(double temp, double alt)
 {
   if (file)
   {
@@ -48,7 +43,10 @@ int writeToFile(double temp)
     Serial.println("Writing to file: ");
 //    Serial.println(text);
     file.println(temp);
-
+    Serial.println(temp);
+    file.println(alt);
+//    if(file.println(temp)==200){Serial.println("hellyeaaaa");}
+//    else{Serial.println("noooooo, couldnot write");}
     return 1;
   } else
   {
